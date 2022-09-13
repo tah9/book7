@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="item" v-for="item in notes">
+    <div class="item" v-for="item in notes" @click="toInfo(item)">
       <div class="time">{{ $formatTime(item.datetime) }}</div>
       <div class="content">{{ item.content }}</div>
     </div>
@@ -16,7 +16,12 @@ export default {
   data() {
     return {}
   },
-  methods: {},
+  methods: {
+    toInfo(item){
+      this.$setJSON('note',item)
+      this.$router.push('/noteInfo')
+    }
+  },
   created() {
 
   }

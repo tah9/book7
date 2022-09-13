@@ -39,6 +39,10 @@ export default {
     }
   },
   created() {
+    if(this.$getJSON('user') === null){
+      this.$router.replace('/login')
+      return
+    }
     request.post('/user/getBook', {
       uid: this.$getJSON("user").uid
     }).then(res => {

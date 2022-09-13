@@ -6,14 +6,19 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: () => import('../views/Guide/Login')
+        component: () => import('../views/Guide/Login'),
+        meta: {allowBack: false}
     }, {
         path: '/login',
-        component: () => import('../views/Guide/Login')
+        component: () => import('../views/Guide/Login'),
+        meta: {allowBack: false}
     }, {
         path: '/addBook',
         component: () => import('../views/Main/AddBook')
-    },{
+    }, {
+        path: '/noteInfo',
+        component: () => import('../views/Main/NoteInfo')
+    }, {
         path: '/add',
         component: () => import('../views/Main/Add')
     }, {
@@ -25,6 +30,12 @@ const routes = [
     }, {
         path: '/bookInfo',
         component: () => import('../views/Main/BookInfo')
+    }, {
+        path: '/elist',
+        component: () => import('../views/Main/ExcerptList')
+    }, {
+        path: '/nlist',
+        component: () => import('../views/Main/NoteList')
     }, {
         path: '/main',
         component: () => import('../views/Main/Main'),

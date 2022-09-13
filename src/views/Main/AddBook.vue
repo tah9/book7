@@ -36,10 +36,10 @@ export default {
   props: {},
   data() {
     return {
-      url:'',
-      name:'',
-      author:'',
-      tip:''
+      url: '',
+      name: '',
+      author: '',
+      tip: ''
     }
   },
   methods: {
@@ -48,29 +48,27 @@ export default {
       this.$nextTick(() => {
         let imgFile = _this.$refs.file.files[0];//取到上传的图片
         let base = window.webkitURL.createObjectURL(imgFile);
-        let formData=new FormData()
-        formData.append('file',imgFile)
-        request.post('/public/upPic',formData).then(res=>{
-          _this.url=res.urls
+        let formData = new FormData()
+        formData.append('file', imgFile)
+        request.post('/public/upPic', formData).then(res => {
+          _this.url = res.urls
           console.log(_this.url)
-          _this.$refs.img.src =this.$baseUrl+res.urls
-
-
+          _this.$refs.img.src = this.$baseUrl + res.urls
         })
       })
     },
-    insertBook(){
-      if (this.name===''||this.author===''||this.url===''){
-        this.tip='请输入完整信息或选择图片'
+    insertBook() {
+      if (this.name === '' || this.author === '' || this.url === '') {
+        this.tip = '请输入完整信息或选择图片'
         return
       }
-      request.post('/user/insertBook',{
-        uid:this.$getJSON('user').uid,
+      request.post('/user/insertBook', {
+        uid: this.$getJSON('user').uid,
         name: this.name,
         author: this.author,
         coverImg: this.url,
         updateTime: new Date().getTime()
-      }).then(res=>{
+      }).then(res => {
         console.log(res)
         this.$router.go(-1)
       })
@@ -99,7 +97,8 @@ export default {
   z-index: 99;
   position: absolute;
 }
-.upPic>img{
+
+.upPic > img {
   width: 100%;
   height: 100%;
   left: 0;
@@ -107,6 +106,7 @@ export default {
   position: absolute;
   object-fit: cover !important;
 }
+
 .upPic {
   border-radius: 3px;
   overflow: hidden;
@@ -115,15 +115,18 @@ export default {
   width: 25vw;
   height: 37.5vw;
 }
-.cell{
+
+.cell {
   display: flex;
   padding: 3vw;
   border-bottom: 1px solid #f0f0f0;
 }
-.cell>div{
+
+.cell > div {
   margin-right: 3vw;
 }
-.cell input{
+
+.cell input {
   padding-left: 2vw;
 }
 </style>
